@@ -17,8 +17,8 @@ body {
   min-height: 100vh;
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  color: var(--dark);
-  background-color: var(--bg-soft);
+  color: white;
+  background-color: black;
 }
 
 header {
@@ -93,14 +93,46 @@ section h2 {
 }
 
 .profile-card {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   align-items: center;
-  background-color: var(--light);
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   padding: 24px;
+  overflow: hidden;
+  background-color: rgba(118, 0, 197, 0.567);
+}
+
+.profile-card::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg,
+      transparent 0%,
+      cyan 15%,
+      transparent 30%
+  );
+  animation: spin 3s linear infinite;
+  z-index: -2;
+}
+
+.profile-card::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: inherit;
+  background: black;
+  z-index: -2;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .profile-card .avatar {
@@ -110,16 +142,20 @@ section h2 {
   object-fit: cover;
   flex-shrink: 0;
   border: 3px solid var(--accent);
+  z-index: 1;
 }
 
 .profile-card .details h3 {
   margin: 0 0 6px 0;
+  color: white;
+  z-index: 1;
 }
 
 .profile-card .details p {
   margin: 0 0 4px 0;
-  color: var(--gray);
-  font-size: 14px;
+  color: white;
+  font-size: 16px;
+  z-index: 1;
 }
 
 .post-hero {
@@ -132,13 +168,17 @@ section h2 {
   color: var(--light);
   padding: 40px 24px;
   margin-bottom: 24px;
+
 }
 
 .post-hero h2 { border-bottom: none; margin: 0 0 6px 0; }
 .post-hero .meta { color: #e8e3f0; }
 
 article {
-  background-color: var(--light);
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+  background-color: rgba(118, 0, 197, 0.567);
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   padding: 20px;
@@ -146,16 +186,39 @@ article {
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
+article::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg,
+      transparent 0%,
+      cyan 15%,
+      transparent 30%
+  );
+  animation: spin 3s linear infinite;
+  z-index: -2;
+}
+
+article::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: inherit;
+  background: black;
+  z-index: -2;
+}
+
 article:hover {
   transform: translateY(-4px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
 }
 
-article h3 { margin-top: 0; }
+article h2 { margin-top: 0; }
 
 article .meta {
-  color: var(--gray);
-  font-size: 13px;
+  color: white;
+  font-size: 16px;
   margin-bottom: 10px;
 }
 
